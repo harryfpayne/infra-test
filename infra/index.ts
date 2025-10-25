@@ -9,8 +9,11 @@ const api_service = new digitalocean.App("api-service", {spec: {
       instanceCount: 1,
       instanceSizeSlug: "apps-s-1vcpu-1gb",
       git: {
-        repoCloneUrl: "https://github.com/digitalocean/sample-golang.git",
+        repoCloneUrl: "https://github.com/harryfpayne/infra-test.git",
         branch: "main",
       },
+      sourceDir: "services/api",
+      dockerfilePath: "services/api/Dockerfile",
+      httpPort: 8080,
     }],
   }});
