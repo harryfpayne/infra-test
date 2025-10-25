@@ -1,0 +1,16 @@
+{
+  "name": "pug-site",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.4",
+    "express": "^5.1.0",
+    "pug": "^3.0.3"
+  }
+}

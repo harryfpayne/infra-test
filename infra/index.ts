@@ -16,5 +16,17 @@ const api_service = new digitalocean.App("api-service", {spec: {
       sourceDir: "services/api",
       dockerfilePath: "services/api/Dockerfile",
       httpPort: 8080,
+    }, {
+      name: "pug-site",
+      instanceCount: 1,
+      instanceSizeSlug: "apps-s-1vcpu-1gb",
+      github: {
+        repo: "harryfpayne/infra-test",
+        branch: "main",
+        deployOnPush: true,
+      },
+      sourceDir: "services/pug-site",
+      dockerfilePath: "services/pug-site/Dockerfile",
+      httpPort: 8888,
     }],
   }});
