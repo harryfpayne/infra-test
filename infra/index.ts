@@ -8,9 +8,10 @@ const api_service = new digitalocean.App("api-service", {spec: {
       name: "api-service",
       instanceCount: 1,
       instanceSizeSlug: "apps-s-1vcpu-1gb",
-      git: {
-        repoCloneUrl: "https://github.com/harryfpayne/infra-test.git",
+      github: {
+        repo: "harryfpayne/infra-test",
         branch: "main",
+        deployOnPush: true,
       },
       sourceDir: "services/api",
       dockerfilePath: "services/api/Dockerfile",
