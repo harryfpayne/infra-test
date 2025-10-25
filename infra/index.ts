@@ -15,17 +15,20 @@ const postgres_user = new digitalocean.DatabaseUser("db-user", {
   name: "harry"
 })
 
-const database_example = new digitalocean.DatabaseDb("database-example", {
+const db = new digitalocean.DatabaseDb("database-example", {
   clusterId: postgres_db.id,
   name: "paace",
 });
 
+const dbConnection = pulumi.interpolate`postgres://${postgres_user.name}:${postgres_user.password}@${postgres_db.host}:${postgres_db.port}/${db.name}`;
 const env = {
   DB_USER: postgres_user.name,
   DB_PASSWORD: postgres_user.password,
   DB_HOST: postgres_db.host,
   DB_PORT: postgres_db.port.apply(v => v.toString()),
+  DB_CONNECTION: dbConnection
 }
+
 
 const api_service = new digitalocean.App("api-service", {spec: {
     name: "api-service",
@@ -66,3 +69,5 @@ const pug_service = new digitalocean.App("pug-service", {spec: {
       httpPort: 8888,
     }]
   }});
+
+export const DB_CONNECTION = dbConnection;
